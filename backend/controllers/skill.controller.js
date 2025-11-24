@@ -2,7 +2,7 @@ import skillsModel from "../models/skills.model.js";
 
 export const getAllSkills = async (req, res) => {
     try {
-        const skills = await skillsModel.find();
+        const skills = await skillsModel.find().populate("category");
         res.status(200).json({
             success: true,
             data: skills,
