@@ -6,13 +6,14 @@ export type Skill = {
   _id: string;
   name: string;
   level: string;
-  category: string;
+  category: SkillCategory;
   createdAt?: string;
 };
 
 export type SkillCategory = {
+  category: Key | null | undefined;
   _id: string;
-  category: string;
+  name: string;
   skills: Skill[];
 };
 
@@ -23,6 +24,12 @@ type SkillsContextType = {
   loading: boolean;
   fetchCategories: () => Promise<void>;
   fetchSkills: () => Promise<void>;
+  createSkillCategorie: (name: string) => Promise<{ success: boolean; message: string }>;
+  createSkill: (
+    name: string,
+    level: string,
+    categoryId: string
+  ) => Promise<{ success: boolean; message: string }>;
 };
 
 const SkillContext = createContext<SkillsContextType | undefined>(undefined);
@@ -35,6 +42,57 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
   const [categories, setCategories] = useState<SkillCategory[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const createSkillCategorie = async (name: string) => {
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        "http://localhost:3001/api/skillcategories/createskillcategory", { name }
+      )
+
+      if (res.data?.success) {
+        await fetchCategories();
+
+        return { success: true, message: "Skill category created successfully" };
+      }
+
+      return { success: false, message: "Cannot create Categories" };
+    } catch (error) {
+      return { success: false, message: "Something went wrong" };
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const createSkill = async (name: string, level: string, categoryId: string) => {
+    try {
+      setLoading(true);
+
+      const res = await axios.post(
+        "http://localhost:3001/api/skills/createskill",
+        {
+          name,
+          level,
+          category: categoryId,
+        }
+      );
+
+      if (res.data.success) {
+        // Refresh both
+        await fetchSkills();
+        await fetchCategories();
+
+        return { success: true, message: "Skill created successfully" };
+      }
+
+      return { success: false, message: "Cannot create skill" };
+    } catch (error: any) {
+      return { success: false, message: error.response?.data?.error || "Error creating skill" };
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Fetch Skill Categories WITH Skills
   const fetchCategories = async () => {
@@ -81,6 +139,8 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
     <SkillContext.Provider
       value={{
         categories,
+        createSkillCategorie,
+        createSkill,
         skills,
         loading,
         fetchCategories,

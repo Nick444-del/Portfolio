@@ -1,23 +1,14 @@
-import { useState } from "react";
-import AdminSidebar from "../components/AdminSidebar/AdminSidebar";
-import { Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import AdminLayout from "../components/Admin Components/AdminLayout";
 
-const AdminLayout = () => {
-  const [collapsed, setCollapsed] = useState(false);
+const AdminRoutes = () => {
+  const isLoggedIn = localStorage.getItem("adminToken");
 
-  return (
-    <div className="flex h-screen overflow-hidden">
-      
-      {/* Sidebar */}
-      <AdminSidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+  if (!isLoggedIn) {
+    return <Navigate to="/portfolio/admin/login" replace />;
+  }
 
-      {/* Page Content */}
-      <div className="flex-1 bg-gray-100 p-6 overflow-y-auto">
-        <Outlet />
-      </div>
-
-    </div>
-  );
+  return <AdminLayout />;
 };
 
-export default AdminLayout;
+export default AdminRoutes;

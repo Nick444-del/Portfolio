@@ -30,19 +30,20 @@ export const getAllSkillCategories = async (req, res) => {
 
 export const getCategoriesWithSkills = async (req, res) => {
     try {
-        // fetch all categories
         const categories = await skillCategoriesModel.find();
 
-        // build the grouped structure
         const result = await Promise.all(
             categories.map(async (cat) => {
                 const skills = await skillsModel.find({ category: cat._id });
 
                 return {
-                    category: cat.name,
+                    _id: cat._id,
+                    name: cat.name,
                     skills: skills.map(skill => ({
+                        _id: skill._id,
                         name: skill.name,
-                        level: skill.level
+                        level: skill.level,
+                        createdAt: skill.createdAt
                     }))
                 };
             })
@@ -59,4 +60,4 @@ export const getCategoriesWithSkills = async (req, res) => {
             error: error.message
         })
     }
-}
+};

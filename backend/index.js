@@ -6,6 +6,7 @@ import { connectToDatabase } from "./configs/connection.js";
 import skillCategoryRouter from "./routers/skillCategory.router.js";
 import skillRouter from "./routers/skill.router.js";
 import userRouter from "./routers/user.router.js";
+import portfolioRouter from "./routers/portfolio.router.js";
 
 config();
 
@@ -28,3 +29,4 @@ app.listen(port, () => {
 app.use("/api/skillcategories", skillCategoryRouter);
 app.use("/api/skills", skillRouter);
 app.use("/api/users", userRouter);
+app.use("/api/portfolios", portfolioRouter);

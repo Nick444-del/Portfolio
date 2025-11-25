@@ -20,25 +20,27 @@ const Experience = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 container mx-auto px-4">
                 {categories.map((cat) => (
                     <div
-                        key={cat.category}
+                        key={cat._id}
                         className="bg-white/5 backdrop-blur-lg border border-transparent hover:border-purple-500 
-                      p-8 rounded-2xl transition shadow-lg"
+                        p-8 rounded-2xl transition shadow-lg"
                     >
+                        {/* Category name */}
                         <h3 className="text-center text-purple-400 text-xl font-semibold mb-6">
-                            {cat.category}
+                            {cat.name}
                         </h3>
 
+                        {/* Skills */}
                         <div className="grid grid-cols-2 gap-6">
                             {cat.skills.map((skill) => (
-                                <article
-                                    key={skill.name}
-                                    className="flex gap-3 items-start"
-                                >
+                                <article key={skill._id} className="flex gap-3 items-start">
                                     <BsFillPatchCheckFill className="text-purple-400 text-xl mt-1" />
-
                                     <div>
-                                        <h4 className="text-white font-medium text-lg">{skill.name}</h4>
-                                        <small className="text-gray-400">{skill.level}</small>
+                                        <h4 className="text-white font-medium text-lg">
+                                            {skill.name}
+                                        </h4>
+                                        <small className="text-gray-400">
+                                            {skill.level}
+                                        </small>
                                     </div>
                                 </article>
                             ))}

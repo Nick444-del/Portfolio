@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 import { Menu, Home, Layers, Tags, LogOut } from "lucide-react";
 
 type Props = {
@@ -7,6 +9,14 @@ type Props = {
 };
 
 const AdminSidebar = ({ collapsed, setCollapsed }: Props) => {
+  const { logout } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setCollapsed(true);
+    logout();
+    navigate("/portfolio/admin/login");
+  };
   return (
     <aside
       className={`
@@ -59,7 +69,7 @@ const AdminSidebar = ({ collapsed, setCollapsed }: Props) => {
       </nav>
 
       {/* Footer */}
-      <div className="mt-auto px-4 py-4 border-t border-gray-800">
+      <div onClick={handleLogout} className="mt-auto px-4 py-4 border-t border-gray-800">
         <button className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-red-400 bg-gray-900/40 hover:bg-gray-800 transition-all
           ${collapsed ? "justify-center" : ""}
         `}>
