@@ -16,10 +16,7 @@ const port = process.env.PORT;
 app.use(express.json());
 
 // ✅ Enable CORS before routes
-app.use(cors({
-    origin: "http://localhost:5173",  // change if needed
-    credentials: true
-}));
+app.use(cors());
 
 app.listen(port, () => {
     connectToDatabase();
