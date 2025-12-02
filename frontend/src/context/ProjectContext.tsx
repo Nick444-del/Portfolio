@@ -8,7 +8,7 @@ export type PortfolioProject = {
     _id: string;
     title: string;
     github: string;
-    live?: string | null;
+    live?: string;
     thumbnail: string;
     createdAt?: string;
 };

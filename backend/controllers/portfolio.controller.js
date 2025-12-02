@@ -17,27 +17,19 @@ export const getAllPortfolios = async (req, res) => {
 
 export const creatProject = async (req, res) => {
     try {
-        const { title, github, demo } = req.body;
+        const { title, github, live } = req.body;
 
         if (!req.file) {
             return res.status(400).json({ success: false, message: "Image is required" });
         }
 
-        // console.log("Cloudinary env:", {
-        //     cloud_name: process.env.CLOUDINARY_NAME,
-        //     api_key: process.env.CLOUDINARY_KEY,
-        //     api_secret: process.env.CLOUDINARY_SECRET,
-        // });
-
-        console.log("Uploaded File Info:", req.file); // ✅ Debug
-
-        const imageURL = req.file.path; // ✅ Cloudinary URL comes in .path
+        const imageURL = req.file.path;
 
         const newProject = await portfolioModel.create({
-            thumbnail: imageURL,  // ✅ matched schema
+            thumbnail: imageURL,
             title,
             github,
-            live: demo,
+            live,
         });
 
         return res.status(201).json({
@@ -50,6 +42,7 @@ export const creatProject = async (req, res) => {
         return res.status(500).json({ success: false, error: error.message });
     }
 };
+
 
 export const deleteProject = async (req, res) => {
     try {

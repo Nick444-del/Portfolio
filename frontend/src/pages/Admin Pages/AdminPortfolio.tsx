@@ -127,13 +127,13 @@ const AdminPortfolio = () => {
                                     <td className="p-4 text-center text-white font-medium">{project.title}</td>
 
                                     <td className="p-4 text-center text-indigo-400 truncate max-w-[180px] hover:underline cursor-pointer">
-                                        {project.github}
+                                        <a href={project.github} target="_blank">Github</a>
                                     </td>
 
                                     <td className="p-4 text-center text-blue-400 truncate max-w-[180px] hover:underline cursor-pointer">
                                         {project.live ? (
                                             <span className="inline-flex items-center gap-1 truncate max-w-[150px]">
-                                                <ExternalLink size={14} /> {project.live}
+                                                <a href={project.live} target="_blank">Live</a>
                                             </span>
                                         ) : (
                                             <span className="text-gray-600">—</span>
