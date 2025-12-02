@@ -1,6 +1,6 @@
 import React from 'react';
 import me from '../../assets/about me.jpg';
-import { FaAward, FaUsers, FaFolder } from 'react-icons/fa';
+import { FaAward, FaFolder } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 
 const About = (): React.JSX.Element => {

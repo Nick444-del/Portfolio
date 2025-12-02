@@ -7,7 +7,7 @@ const Navbar = () => {
   const [activeNav, setActiveNav] = useState('#');
   
   return (
-    <nav className="bg-black/30 w-max block p-4 z-20 fixed left-1/2 transform -translate-x-1/2 bottom-8 flex gap-3 rounded-3xl backdrop-blur-lg">
+    <nav className="bg-black/30 w-max p-4 z-20 fixed left-1/2 transform -translate-x-1/2 bottom-8 flex gap-3 rounded-3xl backdrop-blur-lg">
       <a 
         href="#" 
         onClick={() => setActiveNav('#')} 

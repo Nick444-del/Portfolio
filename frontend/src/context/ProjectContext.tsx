@@ -19,9 +19,7 @@ type PortfolioContextType = {
     fetchProjects: () => Promise<void>;
 
     createProject: (formData: FormData) => Promise<{ success: boolean; message: string }>;
-
-    removeProject?: (id: string) => Promise<void>;
-    updateProject?: (id: string, formData: FormData) => Promise<void>;
+    deleteProject: (id: string) => Promise<{ success: boolean; message: string }>; // ← add this
 };
 
 // -----------------------------------
