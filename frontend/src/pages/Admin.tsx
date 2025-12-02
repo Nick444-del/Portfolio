@@ -1,11 +1,6 @@
-import React from 'react'
-import { useUser } from '../context/UserContext'
 
-type Props = {}
 
-const Admin = (props: Props) => {
-    const { user } = useUser();
-    
+const Admin = () => {
     return (
         <div>Admin</div>
     )
