@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, type Key } from "react";
 import axios from "axios";
 
 // Types

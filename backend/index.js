@@ -1,5 +1,6 @@
 import express from "express";
 import { config } from "dotenv";
+config();
 import cors from "cors";
 
 import { connectToDatabase } from "./configs/connection.js";
@@ -8,7 +9,6 @@ import skillRouter from "./routers/skill.router.js";
 import userRouter from "./routers/user.router.js";
 import portfolioRouter from "./routers/portfolio.router.js";
 
-config();
 
 const app = express();
 const port = process.env.PORT;

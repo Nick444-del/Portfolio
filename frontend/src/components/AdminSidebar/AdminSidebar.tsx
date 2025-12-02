@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { Menu, Home, Layers, Tags, LogOut } from "lucide-react";
+import { Menu, Home, Layers, Tags, LogOut, Box } from "lucide-react";
 
 type Props = {
   collapsed: boolean;
@@ -64,6 +64,13 @@ const AdminSidebar = ({ collapsed, setCollapsed }: Props) => {
           to="/portfolio/admin/skillscategories"
           label="Skill Categories"
           icon={<Tags size={18} />}
+        />
+
+        <NavItem
+          collapsed={collapsed}
+          to="/portfolio/admin/portfolios"
+          label="Portfolios"
+          icon={<Box size={18} />}
         />
 
       </nav>
