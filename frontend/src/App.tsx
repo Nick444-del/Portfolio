@@ -1,7 +1,7 @@
 import Public from './pages/Public'
 import Admin from './pages/Admin'
 import Skills from './pages/Admin Pages/Skills'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import AdminRoutes from './routes/AdminRoutes'
 import AdminPortfolio from './pages/Admin Pages/AdminPortfolio'
 import SkillsCategories from './pages/Admin Pages/SkillsCategories'
@@ -14,8 +14,13 @@ function App() {
     <>
       <Routes>
 
+        {/* Default route */}
+        <Route path="/" element={<Navigate to="/portfolio" />} />
+
+        {/* Public site */}
         <Route path="/portfolio" element={<Public />} />
 
+        {/* Admin Routes */}
         <Route path='/portfolio/admin/login' element={<AdminLogin/>} />
 
         <Route path='/portfolio/admin' element={<AdminRoutes />}>
@@ -24,6 +29,10 @@ function App() {
           <Route path='skillscategories' element={<SkillsCategories/>} />
           <Route path='portfolios' element={<AdminPortfolio/>} />
         </Route>
+
+        {/* Catch-all fallback */}
+        <Route path="*" element={<Navigate to="/portfolio" />} />
+
       </Routes>
     </>
   )
