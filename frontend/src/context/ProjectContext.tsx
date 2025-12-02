@@ -40,7 +40,7 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
     const fetchProjects = async () => {
         setLoading(true);
         try {
-            const res = await axios.get("http://localhost:3001/api/portfolios/getallportfolios");
+            const res = await axios.get("https://portfolio-1-udd9.onrender.com/api/portfolios/getallportfolios");
 
             if (res.data?.success) {
                 setProjects(res.data.data);
@@ -62,7 +62,7 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
             setLoading(true);
 
             const res = await axios.post(
-                "http://localhost:3001/api/portfolios/createproject",
+                "https://portfolio-1-udd9.onrender.com/api/portfolios/createproject",
                 formData,
                 { headers: { "Content-Type": "multipart/form-data" } }
             );
@@ -85,7 +85,7 @@ export const PortfolioProvider = ({ children }: { children: React.ReactNode }) =
             setLoading(true);
 
             const res = await axios.delete(
-                `http://localhost:3001/api/portfolios/deleteproject/${id}`
+                `https://portfolio-1-udd9.onrender.com/api/portfolios/deleteproject/${id}`
             );
 
             if (res.data?.success) {

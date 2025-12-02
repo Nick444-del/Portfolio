@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         try {
             setLoading(true);
 
-            const res = await axios.post("http://localhost:3001/api/users/loginuser", {
+            const res = await axios.post("https://portfolio-1-udd9.onrender.com/api/users/loginuser", {
                 email,
                 password,
             });
@@ -70,7 +70,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         }
 
         try {
-            const res = await axios.get("http://localhost:3001/api/users/me", {
+            const res = await axios.get("https://portfolio-1-udd9.onrender.com/api/users/me", {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

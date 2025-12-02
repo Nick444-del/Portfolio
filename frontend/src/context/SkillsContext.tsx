@@ -48,7 +48,7 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:3001/api/skillcategories/createskillcategory", { name }
+        "https://portfolio-1-udd9.onrender.com/api/skillcategories/createskillcategory", { name }
       )
 
       if (res.data?.success) {
@@ -70,7 +70,7 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(true);
 
       const res = await axios.post(
-        "http://localhost:3001/api/skills/createskill",
+        "https://portfolio-1-udd9.onrender.com/api/skills/createskill",
         {
           name,
           level,
@@ -99,7 +99,7 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://localhost:3001/api/skillcategories/getcategorieswithskills"
+        "https://portfolio-1-udd9.onrender.com/api/skillcategories/getcategorieswithskills"
       );
 
       if (res.data?.success) {
@@ -117,7 +117,7 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://localhost:3001/api/skills/getallskills"
+        "https://portfolio-1-udd9.onrender.com/api/skills/getallskills"
       );
 
       if (res.data?.success) {
