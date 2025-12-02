@@ -1,4 +1,5 @@
 import { AiOutlineHome, AiOutlineUser, AiOutlineBook, AiOutlineContacts } from 'react-icons/ai';
+import { IoMdGitNetwork } from "react-icons/io";
 import { RiServiceLine } from 'react-icons/ri';
 import { useState } from "react";
 
@@ -41,10 +42,21 @@ const Navbar = () => {
         <AiOutlineBook />
       </a>
       <a 
-        href="#services" 
-        onClick={() => setActiveNav('#services')} 
+        href="#work" 
+        onClick={() => setActiveNav('#work')} 
         className={`p-3 rounded-full flex text-gray-300 text-xl transition-colors duration-300 ${
-          activeNav === '#services' 
+          activeNav === '#work' 
+            ? 'bg-blue-500 text-white' 
+            : 'bg-transparent hover:bg-black/20'
+        }`}
+      >
+        <IoMdGitNetwork />
+      </a>
+      <a 
+        href="#portfolio" 
+        onClick={() => setActiveNav('#portfolio')} 
+        className={`p-3 rounded-full flex text-gray-300 text-xl transition-colors duration-300 ${
+          activeNav === '#portfolio' 
             ? 'bg-blue-500 text-white' 
             : 'bg-transparent hover:bg-black/20'
         }`}

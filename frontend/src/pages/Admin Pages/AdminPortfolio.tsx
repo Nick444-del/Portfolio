@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Pencil, Trash2, Plus, ExternalLink, LayoutDashboard, Image } from "lucide-react";
+import { Pencil, Trash2, Plus, LayoutDashboard, Image } from "lucide-react";
 import { usePortfolioContext } from "../../context/ProjectContext";
 
 export type SkillCategory = {

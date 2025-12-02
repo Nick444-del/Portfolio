@@ -61,3 +61,16 @@ export const deleteProject = async (req, res) => {
         });
     }
 };
+
+export const getPortfolio = async (req, res) => {
+    try {
+        const portfolio = await portfolioModel.findById(req.params.id);
+        return res.status(200).json({
+            success: true,
+            data: portfolio,
+            message: "Portfolio project fetched successfully"
+        });
+    } catch (error) {
+        return res.status(500).json({ success: false, error: error.message });
+    }
+}

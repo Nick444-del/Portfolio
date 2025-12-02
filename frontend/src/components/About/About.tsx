@@ -72,11 +72,11 @@ const About = (): React.JSX.Element => {
                             <small className="text-gray-400 text-sm">{experience}</small>
                         </article>
                         
-                        <article className="about__card bg-blue-500/10 border border-transparent rounded-2xl p-8 text-center transition-all duration-300 hover:bg-transparent hover:border-blue-500/30">
+                        {/* <article className="about__card bg-blue-500/10 border border-transparent rounded-2xl p-8 text-center transition-all duration-300 hover:bg-transparent hover:border-blue-500/30">
                             <FaUsers className="about__icon text-blue-500 text-2xl mb-4 mx-auto" />
                             <h5 className="text-lg font-medium mb-2">Clients</h5>
                             <small className="text-gray-400 text-sm">N/A</small>
-                        </article>
+                        </article> */}
                         
                         <article className="about__card bg-blue-500/10 border border-transparent rounded-2xl p-8 text-center transition-all duration-300 hover:bg-transparent hover:border-blue-500/30">
                             <FaFolder className="about__icon text-blue-500 text-2xl mb-4 mx-auto" />
