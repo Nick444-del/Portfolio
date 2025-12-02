@@ -17,6 +17,8 @@ function App() {
         {/* Default route */}
         <Route path="/" element={<Navigate to="/portfolio" />} />
 
+        <Route path='/admin' element={<Navigate to="/portfolio/admin" />} />
+
         {/* Public site */}
         <Route path="/portfolio" element={<Public />} />
 
