@@ -26,3 +26,21 @@ export const createSkill = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+export const deleteSkill = async (req, res) => {
+    try {
+        const deletedSkill = await skillsModel.findByIdAndDelete(req.params.id);
+
+        if(!deletedSkill) {
+            return res.status(404).json({ error: "Skill not found" });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Skill deleted successfully",
+            data: deletedSkill,
+        });
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}

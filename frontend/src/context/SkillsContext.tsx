@@ -30,6 +30,7 @@ type SkillsContextType = {
     level: string,
     categoryId: string
   ) => Promise<{ success: boolean; message: string }>;
+  deleteSkill: (id: string) => Promise<{ success: boolean; message: string }>;
 };
 
 const SkillContext = createContext<SkillsContextType | undefined>(undefined);
@@ -64,6 +65,30 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(false);
     }
   }
+
+  const deleteSkill = async (id: string): Promise<{ success: boolean; message: string }> => {
+    try {
+      setLoading(true);
+
+      const res = await axios.delete(
+        `https://portfolio-1-udd9.onrender.com/api/skills/deleteskill/${id}`
+      );
+
+      if (res.data?.success) {
+        await fetchSkills();
+        return { success: true, message: "Skill deleted successfully" };
+      }
+
+      // ❗ MUST RETURN something even if success = false
+      return { success: false, message: "Failed to delete skill" };
+
+    } catch (error) {
+      return { success: false, message: "Something went wrong" };
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const createSkill = async (name: string, level: string, categoryId: string) => {
     try {
@@ -145,6 +170,7 @@ export const SkillProvider = ({ children }: { children: React.ReactNode }) => {
         loading,
         fetchCategories,
         fetchSkills,
+        deleteSkill
       }}
     >
       {children}

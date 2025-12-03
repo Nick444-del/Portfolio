@@ -3,7 +3,7 @@ import { useSkillContext } from "../../context/SkillsContext";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
 const Skills = () => {
-    const { skills, categories, loading, fetchSkills, createSkill, fetchCategories } = useSkillContext();
+    const { skills, categories, loading, fetchSkills, createSkill, fetchCategories, deleteSkill } = useSkillContext();
 
     const [showModal, setShowModal] = useState(false);
     const [name, setName] = useState("");
@@ -87,7 +87,15 @@ const Skills = () => {
                                             <button className="text-blue-400 hover:text-blue-300 transition">
                                                 <Pencil size={18} />
                                             </button>
-                                            <button className="text-red-400 hover:text-red-300 transition">
+                                            <button
+                                                onClick={async () => {
+                                                    if (confirm("Are you sure you want to delete this skill?")) {
+                                                        const result = await deleteSkill(skill._id);
+                                                        alert(result.message);
+                                                        await fetchSkills();  // refresh table
+                                                    }
+                                                }}
+                                                className="text-red-400 hover:text-red-300 transition">
                                                 <Trash2 size={18} />
                                             </button>
                                         </div>
