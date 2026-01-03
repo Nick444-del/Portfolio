@@ -61,3 +61,19 @@ export const getCategoriesWithSkills = async (req, res) => {
         })
     }
 };
+
+export const deleteCategoy = async (req, res) => {
+    try {
+        const findCategory = await skillCategoriesModel.findByIdAndDelete(req.params.id);
+        if (!findCategory) {
+            return res.status(404).json({ error: "Category not found" });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "Category deleted successfully",
+            data: findCategory
+        })
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+}

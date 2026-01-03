@@ -3,7 +3,7 @@ import { useSkillContext } from "../../context/SkillsContext";
 import { Pencil, Trash2, Plus } from "lucide-react";
 
 const SkillsCategories = () => {
-    const { categories, fetchCategories, createSkillCategorie, loading } = useSkillContext();
+    const { categories, fetchCategories, createSkillCategorie, deleteSkillCategory, loading } = useSkillContext();
 
     const [showModal, setShowModal] = useState(false);
     const [name, setName] = useState("");
@@ -24,6 +24,21 @@ const SkillsCategories = () => {
         if (result.success) {
             setShowModal(false);
             setName("");
+        }
+    };
+
+    const handleDeleteCategory = async (id: string) => {
+        const confirmDelete = confirm(
+            "Are you sure you want to delete this category?"
+        );
+
+        if (!confirmDelete) return;
+
+        const result = await deleteSkillCategory(id);
+        alert(result.message);
+
+        if (result.success) {
+            await fetchCategories();
         }
     };
 
@@ -77,7 +92,12 @@ const SkillsCategories = () => {
                                             <button className="text-blue-400 hover:text-blue-300 transition">
                                                 <Pencil size={18} />
                                             </button>
-                                            <button className="text-red-400 hover:text-red-300 transition">
+                                            <button
+                                                onClick={() =>
+                                                    handleDeleteCategory(cat._id)
+                                                }
+                                                className="text-red-400 hover:text-red-300 transition"
+                                            >
                                                 <Trash2 size={18} />
                                             </button>
                                         </div>
