@@ -1,11 +1,3 @@
-Perfect — your **frontend structure is clean, modern, and interview-ready**.
-Now I’ll do exactly what a **senior frontend engineer** would do: create a **professional `README.md`** that explains *architecture, decisions, and tooling* — not just “React + Tailwind”.
-
-Below is a **final, production-grade README for your `frontend` folder**.
-You can **copy-paste this directly** into `frontend/README.md`.
-
----
-
 # 🎨 Frontend – Portfolio Application
 
 This folder contains the **frontend application** for the Portfolio project.
