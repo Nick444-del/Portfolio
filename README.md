@@ -26,7 +26,7 @@ This portfolio reflects how I approach **actual production applications**, not j
 * **Vite + React (TypeScript)** – Fast builds and type safety
 * **Tailwind CSS** – Utility-first, responsive UI design
 * **React Context API** – Global state & API handling
-* **Axios / Fetch** – API communication
+* **Axios** – API communication
 
 ### Backend
 
