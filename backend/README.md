@@ -14,6 +14,8 @@ The backend exposes REST APIs consumed by the frontend to manage projects, categ
 * **MongoDB** – NoSQL database
 * **Mongoose** – ODM for MongoDB
 * **Cloudinary** – Cloud-based image storage
+* **bcrypt** – Password hashing
+* **JWT** – Authentication & authorization
 * **dotenv** – Environment variable management
 * **CORS** – Cross-origin resource sharing
 
@@ -43,7 +45,7 @@ backend/
 
 1. Client sends a request to an API endpoint
 2. Request is routed via **routers**
-3. Middleware processes validation / CORS / authentication
+3. Middleware handles validation, authentication, and authorization
 4. Controllers execute business logic
 5. Models interact with MongoDB
 6. Response is returned to the client
@@ -64,6 +66,9 @@ Create a `.env` file in the backend root directory:
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=1d
+
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
@@ -81,15 +86,13 @@ CLOUDINARY_API_SECRET=your_api_secret
 npm install
 ```
 
----
-
 ### 2️⃣ Run Development Server
 
 ```bash
 npm run dev
 ```
 
-OR (if using nodemon manually):
+OR
 
 ```bash
 node index.js
@@ -108,7 +111,7 @@ http://localhost:5000
 * RESTful endpoints
 * Centralized routing
 * Controller-based logic
-* Proper status codes and JSON responses
+* Proper HTTP status codes and JSON responses
 * CORS enabled for frontend communication
 
 Example route pattern:
@@ -117,6 +120,7 @@ Example route pattern:
 /api/projects
 /api/categories
 /api/upload
+/api/auth
 ```
 
 ---
@@ -126,20 +130,50 @@ Example route pattern:
 * Images are uploaded to **Cloudinary**
 * Only image URLs are stored in MongoDB
 * Improves performance and reduces backend load
-* Enables easy scaling and CDN benefits
+* Enables easy scaling via CDN support
 
 ---
 
-## 🧠 Middleware Usage
+## 🔐 Authentication & Authorization
 
-Custom middleware is used for:
+### Password Security (bcrypt)
 
-* Request validation
-* Error handling
-* CORS configuration
-* Reusable logic across routes
+* Passwords are never stored in plain text
+* All passwords are hashed using **bcrypt**
+* Secure comparison is performed during login
 
-This keeps controllers clean and focused.
+### JWT Authentication
+
+* JWT is generated on successful login
+* Token includes user ID and role information
+* Token is required for accessing protected routes
+
+### Role-Based Access Control
+
+```js
+isAdmin: {
+  type: Boolean,
+  default: false
+}
+```
+
+Access rules:
+
+* ✅ Authenticated user + `isAdmin = true` → Admin access granted
+* ❌ Authenticated user + `isAdmin = false` → Access denied
+* ❌ No token → Unauthorized
+
+Admin privileges can only be enabled from the backend.
+
+---
+
+### 🚫 No Public Registration (Intentional)
+
+* No public signup endpoint
+* Admin users are created and managed manually
+* Prevents unauthorized access and role escalation
+
+This mirrors real-world **internal admin dashboards**.
 
 ---
 
@@ -147,18 +181,20 @@ This keeps controllers clean and focused.
 
 * Core APIs implemented
 * CRUD operations for major entities
-* MongoDB schema validation in place
-* Cloudinary image integration completed
-* JWT authentication & protected routes
-* Admin dashboard integration
+* MongoDB schema validation
+* Cloudinary image integration
+* JWT-based authentication
+* Role-protected admin dashboard integration
 
 ---
 
 ## 🔮 Future Enhancements
 
-* Centralized error logger
-* API rate limiting
+* Refresh token implementation
+* Centralized error logging
 * Input validation using Joi/Zod
+* API rate limiting
+* Audit logs for admin actions
 
 ---
 
@@ -168,3 +204,5 @@ This keeps controllers clean and focused.
 MERN Stack Developer
 📍 Mumbai, India
 📧 [nikhilgorule7@gmail.com](mailto:nikhilgorule7@gmail.com)
+
+---
