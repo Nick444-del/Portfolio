@@ -1,13 +1,3 @@
-Yes — and this is a **smart move**.
-A good README is not decoration; it’s **an interview amplifier**. Recruiters and senior devs *do read it* when deciding whether you’re worth interviewing.
-
-I’ll give you a **production-grade README** you can directly use on GitHub.
-It’s written to make you look like a **professional MERN / Web developer**, not a student.
-
-You can copy-paste this and then tweak names/links.
-
----
-
 # 🚀 Full-Stack Portfolio Website
 
 A modern, full-stack personal portfolio website built to showcase projects, skills, and experience using a **production-ready MERN-style architecture**.
