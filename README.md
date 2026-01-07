@@ -149,8 +149,6 @@ CLOUDINARY_API_SECRET=your_api_secret
 
 ## 📌 Future Improvements
 
-* Admin dashboard for managing content
-* JWT-protected routes
 * Email notifications for contact form
 * Improved error handling & logging
 * SEO optimization
