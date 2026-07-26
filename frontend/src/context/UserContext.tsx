@@ -29,7 +29,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
     // ========== LOGIN FUNCTION ==========
     const login = async (email: string, password: string) => {
-        try {
+        try { 
             setLoading(true);
 
             const res = await axios.post("https://portfolio-1-udd9.onrender.com/api/users/loginuser", {
